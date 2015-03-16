@@ -122,6 +122,11 @@ class jdk_oracle(
                 target  => "${java_home}/bin/javac",
                 require => Exec['extract_jdk'],
             }
+            file { '/usr/bin/java':
+                ensure  => link,
+                target  => '/etc/alternatives/java',
+                require => File['/etc/alternatives/java'],
+            }
             file { '/usr/sbin/java':
                 ensure  => link,
                 target  => '/etc/alternatives/java',
